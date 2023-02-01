@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="WPF_DCrypt.CreateUserCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_DCrypt"
+             mc:Ignorable="d" Background="White"
+             Height="420" Width="900">
+    <Grid Margin="0,0,0,11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="390"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="900"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" BorderThickness="3" 
+                Width="760" HorizontalAlignment="Center" Margin="0,10,0,0"
+                BorderBrush="Black" CornerRadius="30" >
+
+            <StackPanel Margin="35,0,49,0">
+
+                <StackPanel     Orientation="Horizontal" Margin="0,10">
+
+                    <TextBlock  Text="Login Name: " Margin="5" Width="76" />
+
+                    <TextBox    x:Name="TbLoginName" MaxLength="30" 
+                                FontSize="20" FontFamily="Consolas"
+                                Background="LightGray" Margin="10,0,0,0" 
+                                Width="573" Height="31"></TextBox>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,10">
+
+                    <TextBlock Text="Password: " Margin="5" Width="82" />
+
+                    <PasswordBox x:Name="passwordBox" MaxLength="30" Margin="5" 
+                                    Background="LightGray" FontSize="20" FontFamily="Consolas"
+                                    PreviewMouseDown="passwordBox_PreviewMouseDown"
+                                    PreviewMouseUp="passwordBox_PreviewMouseUp" 
+                                    Height="31" Width="574" />
+
+
+                </StackPanel>
+
+
+
+                <StackPanel Orientation="Vertical" Margin="0 5">
+                    <StackPanel Orientation="Horizontal" x:Name="PanelGenerateSalt" Visibility="Visible" Width="669">
+
+                        <ComboBox x:Name="cboRounds" Width="67" FontSize="24">
+                            <ComboBoxItem Content="10" Tag="10"></ComboBoxItem>
+                            <ComboBoxItem Content="11" Tag="11"></ComboBoxItem>
+                            <ComboBoxItem Content="12" Tag="12" IsSelected="True"></ComboBoxItem>
+                            <ComboBoxItem Content="13" Tag="13"></ComboBoxItem>
+                            <ComboBoxItem Content="14" Tag="14"></ComboBoxItem>
+                            <ComboBoxItem Content="15" Tag="15"></ComboBoxItem>
+                            <ComboBoxItem Content="16" Tag="16"></ComboBoxItem>
+                            <ComboBoxItem Content="17" Tag="17"></ComboBoxItem>
+                            <ComboBoxItem Content="18" Tag="18"></ComboBoxItem>
+                            <ComboBoxItem Content="19" Tag="19"></ComboBoxItem>
+                            <ComboBoxItem Content="20" Tag="20"></ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Content="Build SALT" x:Name="BtnGenerate" 
+                                Margin="5,0" 
+                                Click="BtnGenerate_Click" Width="72" Height="47">
+                        </Button>
+
+                        <TextBlock x:Name="TBRandomSalt" Width="512" 
+                                 FontSize="18" FontFamily="Consolas"
+                                  Background="LightYellow"
+                                 Margin="5" Height="30" />
+
+
+                    </StackPanel>
+
+                </StackPanel>
+
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+
+                    <StackPanel Orientation="Horizontal" Width="671">
+                        <Button x:Name="BtnGenerateHash"       Content="Build Password Hash" 
+                            Click="GenerateHash_Click"     Margin="2,5" 
+                            HorizontalAlignment="Left"
+                            Width="143" Height="41" />
+
+                        <StackPanel Orientation="Vertical" Margin="10" Width="513">
+                            <Label Content="BCrypt - One-Way Password Hash" Width="414" HorizontalAlignment="Left"></Label>
+                            <TextBlock x:Name="hashResult" Background="LightYellow" 
+                               HorizontalAlignment="Left" FontSize="15" FontFamily="Consolas"
+                               Width="512" Height="27"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,60,0,0">
+
+                    <Button x:Name="BtnVerify" Content="Verify" 
+                            Background="LightGoldenrodYellow"
+                            Click="VerifyHash_Click"  Width="113" Height="41"></Button>
+
+                    <Button x:Name="BtnInsert" Content="Save to Database" 
+                            Background="LightSkyBlue" Margin="10,0,0,0"
+                            Click="BtnInsert_Click"  Width="113" Height="41"></Button>
+
+                    <Button x:Name="BtnCancel"       Content="Cancel" 
+                            Click="BtnCancel_Click"     Margin="10,0,0,0"
+                            Width="124" Height="41" />
+
+                    <TextBlock x:Name="TBShowPassword" Visibility="Hidden" 
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
